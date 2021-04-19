@@ -1,0 +1,8 @@
+{
+  "name": "MedicineFinder",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "id": "b19f78cd"
+}
