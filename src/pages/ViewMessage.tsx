@@ -1,5 +1,6 @@
-import { useState } from 'react';
-import { Message, getMessage } from '../data/messages';
+import { useState } from "react";
+import { getDistributor, DistributorInfo } from "../data/messages";
+import { CallNumber } from "@ionic-native/call-number";
 import {
   IonBackButton,
   IonButtons,
@@ -12,17 +13,18 @@ import {
   IonPage,
   IonToolbar,
   useIonViewWillEnter,
-} from '@ionic/react';
-import { personCircle } from 'ionicons/icons';
-import { useParams } from 'react-router';
-import './ViewMessage.css';
+  IonAvatar,
+} from "@ionic/react";
+import { personCircle } from "ionicons/icons";
+import { useParams } from "react-router";
+import "./ViewMessage.css";
 
 function ViewMessage() {
-  const [message, setMessage] = useState<Message>();
+  const [message, setMessage] = useState<DistributorInfo>();
   const params = useParams<{ id: string }>();
 
   useIonViewWillEnter(() => {
-    const msg = getMessage(parseInt(params.id, 10));
+    const msg = getDistributor(parseInt(params.id, 10));
     setMessage(msg);
   });
 
@@ -31,7 +33,10 @@ function ViewMessage() {
       <IonHeader translucent>
         <IonToolbar>
           <IonButtons>
-            <IonBackButton text="Inbox" defaultHref="/home"></IonBackButton>
+            <IonBackButton
+              text="Distributor Details"
+              defaultHref="/home"
+            ></IonBackButton>
           </IonButtons>
         </IonToolbar>
       </IonHeader>
@@ -40,35 +45,52 @@ function ViewMessage() {
         {message ? (
           <>
             <IonItem>
-              <IonIcon icon={personCircle} color="primary"></IonIcon>
               <IonLabel className="ion-text-wrap">
                 <h2>
-                  {message.fromName}
-                  <span className="date">
-                    <IonNote>{message.date}</IonNote>
-                  </span>
+                  <IonNote>Name</IonNote>
                 </h2>
-                <h3>
-                  To: <IonNote>Me</IonNote>
-                </h3>
+                <h3>{message.distributorName}</h3>
               </IonLabel>
             </IonItem>
-
-            <div className="ion-padding">
-              <h1>{message.subject}</h1>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-                nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                sunt in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-            </div>
+            <IonItem>
+              <IonLabel>
+                <h2>
+                  <IonNote>Medicine</IonNote>
+                </h2>
+                <h3>{message.medicineName}</h3>
+              </IonLabel>
+            </IonItem>
+            <IonItem>
+              <IonLabel>
+                <h2>
+                  <IonNote>Address</IonNote>
+                </h2>
+                <h3>{message.address}</h3>
+              </IonLabel>
+            </IonItem>
+            {message.phoneNumber.length &&
+              message.phoneNumber.map(
+                (item, index) =>
+                  item && (
+                    <IonItem
+                      key={item}
+                      onClick={() => CallNumber.callNumber(item, false)}
+                    >
+                      <IonLabel>
+                        <h2>
+                          <IonNote>Contact-{index + 1}</IonNote>
+                        </h2>
+                        <h3>{item}</h3>
+                      </IonLabel>
+                      <IonAvatar slot="end">
+                        <img src="https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png" />
+                      </IonAvatar>
+                    </IonItem>
+                  )
+              )}
           </>
         ) : (
-          <div>Message not found</div>
+          <div>Distributor not found</div>
         )}
       </IonContent>
     </IonPage>
