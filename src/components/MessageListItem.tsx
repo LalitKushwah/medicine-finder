@@ -12,8 +12,11 @@ const MessageListItem: React.FC<DistributorInfo> = ({
   state,
 }) => {
   return (
-    <IonItem routerLink={`/message/${distributorID}`} detail={false}>
-      <div slot="start" className="dot dot-unread"></div>
+    <IonItem lines="none" className="distributor-item" routerLink={`/message/${distributorID}`} detail={false}>
+      {/* <div slot="start" className="dot dot-unread"></div> */}
+      <div className="store-icon">
+        <img src="assets/medical-cross.svg" alt=""/>
+      </div>
       <IonLabel className="ion-text-wrap">
         <h2>
           {distributorName}
