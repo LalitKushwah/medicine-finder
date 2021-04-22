@@ -67,56 +67,62 @@ const Home: React.FC = () => {
 
   return (
     <IonPage id="home-page">
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>CoviConnect</IonTitle>
+      <IonHeader mode="ios">
+        <IonToolbar mode="ios" color="primary">
+          <IonTitle>CoviCare</IonTitle>
           <section slot="end" style={{ marginRight: "10px" }}>
             <Disclaimer content={disclaimerMessage} />
           </section>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonItem>
-          <IonLabel>City</IonLabel>
-          <IonSelect
-            value={city}
-            multiple={false}
-            cancelText="Nah"
-            okText="Okay!"
-            onIonChange={(e) => setCity(e.detail.value)}
+        <div className="action_bar">
+          <IonItem lines="none">
+            <IonLabel>City</IonLabel>
+            <IonSelect
+              value={city}
+              multiple={false}
+              mode="ios"
+              cancelText="Cancel"
+              okText="Okay"
+              onIonChange={(e) => setCity(e.detail.value)}
+            >
+              {data.city.map((item) => (
+                <IonSelectOption value={item} key={item}>
+                  {item}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </IonItem>
+          <IonItem lines="none">
+            <IonLabel>Medicine</IonLabel>
+            <IonSelect
+              value={medicine}
+              multiple={false}
+              mode="ios"
+              cancelText="Cancel"
+              okText="Okay"
+              onIonChange={(e) => setMedicine(e.detail.value)}
+            >
+              {data.medicine.map((item) => (
+                <IonSelectOption value={item} key={item}>
+                  {item}
+                </IonSelectOption>
+              ))}
+            </IonSelect>
+          </IonItem>
+          <IonButton
+            expand="block"
+            color="primary"
+            fill="solid"
+            mode="ios"
+            onClick={() => fetchDistributorList()}
+            disabled={city.length && medicine.length ? false : true}
           >
-            {data.city.map((item) => (
-              <IonSelectOption value={item} key={item}>
-                {item}
-              </IonSelectOption>
-            ))}
-          </IonSelect>
-        </IonItem>
-        <IonItem>
-          <IonLabel>Medicine</IonLabel>
-          <IonSelect
-            value={medicine}
-            multiple={false}
-            cancelText="Cancel"
-            okText="Okay!"
-            onIonChange={(e) => setMedicine(e.detail.value)}
-          >
-            {data.medicine.map((item) => (
-              <IonSelectOption value={item} key={item}>
-                {item}
-              </IonSelectOption>
-            ))}
-          </IonSelect>
-        </IonItem>
-        <IonButton
-          expand="full"
-          color="primary"
-          fill="solid"
-          onClick={() => fetchDistributorList()}
-          disabled={city.length && medicine.length ? false : true}
-        >
-          Search Distributor
-        </IonButton>
+            Search Distributor
+          </IonButton>
+        </div>
+
         {distributor.length > 0 && (
           <IonList>
             <IonListHeader lines="inset">

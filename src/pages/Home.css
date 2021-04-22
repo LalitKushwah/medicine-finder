@@ -1,11 +1,25 @@
+.ion-page {
+  align-items: center;
+}
+
+ion-content {
+  --padding-start: 12px;
+  --padding-end: 12px;
+  /* --padding-top: 12px; */
+  --background: #eff3fd;
+  max-width: 720px;
+}
+
 /* set padding */
 ion-item {
-  padding: 10px;
+  padding: 0 10px;
+  margin-bottom: 8px;
+  border-radius: 10px;
 }
 /* Set the width to the full container and center the content */
 ion-select {
   width: 100%;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 /* Set the flex in order to size the text width to its content */
@@ -37,6 +51,25 @@ ion-select::part(text) {
 
 /* Set the icon color and opacity */
 ion-select::part(icon) {
-  color: #971e49;
+  color: #F93F76;
+  /* color: #971e49; */
   opacity: 1;
+}
+
+.list-md {
+  background: transparent;
+  padding-top: 0;
+}
+
+ion-list-header {
+  margin-bottom: 12px;
+  padding: 0 0 0 4px;
+}
+
+.action_bar {
+  background: #eff3fd;
+  padding: 12px 0;
+  position: sticky;
+  top: 0;
+  z-index: 11;
 }

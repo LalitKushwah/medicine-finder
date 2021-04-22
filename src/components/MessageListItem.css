@@ -1,6 +1,14 @@
 ion-item {
   --padding-start: 0;
   --inner-padding-end: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  background: #fff;
+}
+
+.distributor-item {
+  margin-bottom: 16px;
+  border: none;
 }
 
 ion-label {
@@ -13,12 +21,12 @@ ion-item h2 {
   margin: 0;
 }
 
-ion-item p {
+/* ion-item p {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 95%;
-}
+} */
 
 ion-item .date {
   float: right;
@@ -56,4 +64,13 @@ ion-item ion-note.md {
 ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
+}
+
+.store-icon {
+  
+}
+
+.store-icon img {
+  width: 32px;
+  margin-right: 12px;
 }
