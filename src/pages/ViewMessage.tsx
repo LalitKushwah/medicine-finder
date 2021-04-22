@@ -82,9 +82,11 @@ function ViewMessage() {
                         </h2>
                         <h3>{item}</h3>
                       </IonLabel>
-                      <IonAvatar slot="end">
-                        <img src="https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png" />
-                      </IonAvatar>
+                      <a href={`tel:${item}`}>
+                        <IonAvatar slot="end">
+                          <img src="https://images.vexels.com/media/users/3/137415/isolated/preview/0e475bb9b17b3fa4f94f31fba1635b8f-telephone-call-icon-logo-by-vexels.png" />
+                        </IonAvatar>
+                      </a>
                     </IonItem>
                   )
               )}

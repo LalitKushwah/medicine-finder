@@ -1,6 +1,6 @@
 const CONSTANTS = {
     API: {
-        BASEURL: 'http://helpinghand.vishalpatil.in/api',
+        BASEURL: 'https://helpinghand.vishalpatil.in/api',
         fetchDistributors: '/distributors'
     }
 };

@@ -24,6 +24,7 @@
     "qs": "^6.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "react-loader-spinner": "^4.0.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -69,7 +70,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "2.4.7"
+    "@capacitor/cli": "2.4.7",
+    "@types/styled-components": "^5.1.9"
   },
   "description": "An Ionic project"
 }

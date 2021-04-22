@@ -1,5 +1,5 @@
 import MessageListItem from "../components/MessageListItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import {
   getDistributorList,
   DistributorInfo,
@@ -7,6 +7,7 @@ import {
 } from "../data/messages";
 import axios from "axios";
 import CONSTANTS from "../constants";
+import Disclaimer from "../components/Disclaimer";
 
 import {
   IonContent,
@@ -26,7 +27,7 @@ import {
 } from "@ionic/react";
 
 import "./Home.css";
-import data from "../data/static";
+import data, { disclaimerMessage } from "../data/static";
 import Loader from "../components/Loader/Loader";
 
 const Home: React.FC = () => {
@@ -68,7 +69,10 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Medicine Finder</IonTitle>
+          <IonTitle>CoviCare</IonTitle>
+          <section slot="end" style={{ marginRight: "10px" }}>
+            <Disclaimer content={disclaimerMessage} />
+          </section>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
