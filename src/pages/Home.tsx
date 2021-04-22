@@ -69,7 +69,7 @@ const Home: React.FC = () => {
     <IonPage id="home-page">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>CoviCare</IonTitle>
+          <IonTitle>CoviConnect</IonTitle>
           <section slot="end" style={{ marginRight: "10px" }}>
             <Disclaimer content={disclaimerMessage} />
           </section>
