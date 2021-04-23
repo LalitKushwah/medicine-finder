@@ -30,8 +30,8 @@ function ViewMessage() {
 
   return (
     <IonPage id="view-message-page">
-      <IonHeader translucent>
-        <IonToolbar>
+      <IonHeader mode="ios" translucent color="primary">
+        <IonToolbar mode="ios">
           <IonButtons>
             <IonBackButton
               text="Distributor Details"
@@ -44,7 +44,7 @@ function ViewMessage() {
       <IonContent fullscreen>
         {message ? (
           <>
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel className="ion-text-wrap">
                 <h2>
                   <IonNote>Name</IonNote>
@@ -52,7 +52,7 @@ function ViewMessage() {
                 <h3>{message.distributorName}</h3>
               </IonLabel>
             </IonItem>
-            <IonItem>
+            <IonItem lines="none">
               <IonLabel>
                 <h2>
                   <IonNote>Medicine</IonNote>
@@ -60,8 +60,8 @@ function ViewMessage() {
                 <h3>{message.medicineName}</h3>
               </IonLabel>
             </IonItem>
-            <IonItem>
-              <IonLabel>
+            <IonItem lines="none">
+              <IonLabel style={{ whiteSpace: "normal" }}>
                 <h2>
                   <IonNote>Address</IonNote>
                 </h2>
@@ -73,6 +73,7 @@ function ViewMessage() {
                 (item, index) =>
                   item && (
                     <IonItem
+                      lines="none"
                       key={item}
                       onClick={() => CallNumber.callNumber(item, false)}
                     >

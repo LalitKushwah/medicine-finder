@@ -24,7 +24,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 
 const App: React.FC = () => (
-  <IonApp>
+  <IonApp style={{background: "#eff3fd"}}>
     <IonReactRouter>
       <IonRouterOutlet>
         <Route path="/" exact={true}>
