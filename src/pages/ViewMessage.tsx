@@ -61,7 +61,7 @@ function ViewMessage() {
               </IonLabel>
             </IonItem>
             <IonItem lines="none">
-              <IonLabel>
+              <IonLabel style={{ whiteSpace: "normal" }}>
                 <h2>
                   <IonNote>Address</IonNote>
                 </h2>
@@ -72,7 +72,8 @@ function ViewMessage() {
               message.phoneNumber.map(
                 (item, index) =>
                   item && (
-                    <IonItem lines="none"
+                    <IonItem
+                      lines="none"
                       key={item}
                       onClick={() => CallNumber.callNumber(item, false)}
                     >
