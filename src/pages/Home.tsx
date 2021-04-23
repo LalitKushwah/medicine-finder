@@ -29,9 +29,10 @@ import {
 import "./Home.css";
 import data, { disclaimerMessage } from "../data/static";
 import Loader from "../components/Loader/Loader";
+import Select from "react-select";
 
 const Home: React.FC = () => {
-  const [city, setCity] = useState<string[]>([]);
+  const [city, setCity] = useState<any>([]);
   const [medicine, setMedicine] = useState<string[]>([]);
   const [distributor, setDistributor] = useState<DistributorInfo[]>([]);
   const [showLoader, setShowLoader] = useState<Boolean>(false);
@@ -40,7 +41,7 @@ const Home: React.FC = () => {
     setShowLoader(true);
     const params = {
       medicine: `'${medicine}'`,
-      city: `'${city}'`,
+      city: `'${city.value}'`,
     };
     axios
       .get(`${CONSTANTS.API.BASEURL}${CONSTANTS.API.fetchDistributors}`, {
@@ -77,23 +78,13 @@ const Home: React.FC = () => {
       </IonHeader>
       <IonContent fullscreen>
         <div className="action_bar">
-          <IonItem lines="none">
-            <IonLabel>City</IonLabel>
-            <IonSelect
-              value={city}
-              multiple={false}
-              mode="ios"
-              cancelText="Cancel"
-              okText="Okay"
-              onIonChange={(e) => setCity(e.detail.value)}
-            >
-              {data.city.map((item) => (
-                <IonSelectOption value={item} key={item}>
-                  {item}
-                </IonSelectOption>
-              ))}
-            </IonSelect>
-          </IonItem>
+          {/* @Ankit styling for below select needs to beupdate  */}
+          <Select
+            value={city}
+            onChange={(e: any) => setCity(e)}
+            options={data.city}
+            placeholder="Select city"
+          />
           <IonItem lines="none">
             <IonLabel>Medicine</IonLabel>
             <IonSelect
@@ -117,7 +108,7 @@ const Home: React.FC = () => {
             fill="solid"
             mode="ios"
             onClick={() => fetchDistributorList()}
-            disabled={city.length && medicine.length ? false : true}
+            disabled={city && medicine.length ? false : true}
           >
             Search Distributor
           </IonButton>
