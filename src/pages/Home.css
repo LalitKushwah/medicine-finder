@@ -71,5 +71,28 @@ ion-list-header {
   padding: 12px 0;
   position: sticky;
   top: 0;
-  z-index: 11;
+  z-index: 1;
+}
+
+.medicine_select {
+  z-index: 0;
+}
+
+.custom_select{
+  border-radius: 10px !important;
+  line-height: 36px;
+  margin-bottom: 8px;
+}
+
+.custom_select__control{
+  border-radius: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.custom_select__menu-list {
+  z-index: 2;
+}
+
+.custom_select__dropdown-indicator {
+  color: #F93F76 !important;
 }

@@ -84,8 +84,10 @@ const Home: React.FC = () => {
             onChange={(e: any) => setCity(e)}
             options={data.city}
             placeholder="Select city"
+            className="custom_select"
+            classNamePrefix="custom_select"
           />
-          <IonItem lines="none">
+          <IonItem lines="none" className="medicine_select">
             <IonLabel>Medicine</IonLabel>
             <IonSelect
               value={medicine}
