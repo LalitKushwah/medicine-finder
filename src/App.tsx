@@ -1,6 +1,6 @@
 import { Redirect, Route } from "react-router-dom";
 import { IonApp, IonRouterOutlet } from "@ionic/react";
-import { IonReactRouter } from "@ionic/react-router";
+import { IonReactHashRouter } from "@ionic/react-router";
 import Home from "./pages/Home";
 import ViewMessage from "./pages/ViewMessage";
 
@@ -37,7 +37,7 @@ const App: React.FC = () => {
 
   return (
     <IonApp style={{ background: "#eff3fd" }}>
-      <IonReactRouter>
+      <IonReactHashRouter>
         <IonRouterOutlet>
           <Route path="/" exact={true}>
             <Home />
@@ -49,7 +49,7 @@ const App: React.FC = () => {
             <ViewMessage />
           </Route>
         </IonRouterOutlet>
-      </IonReactRouter>
+      </IonReactHashRouter>
     </IonApp>
   );
 };
