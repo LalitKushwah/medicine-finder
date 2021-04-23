@@ -27,9 +27,10 @@ import ReactGA from "react-ga";
 import CONSTANTS from "./constants";
 import { useEffect } from "react";
 
-ReactGA.initialize(CONSTANTS.GA_CODE);
-
 const App: React.FC = () => {
+  useEffect(() => {
+    ReactGA.initialize(CONSTANTS.GA_CODE);
+  });
   useEffect(() => {
     ReactGA.pageview(window.location.pathname + window.location.search);
   });
