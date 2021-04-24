@@ -6,7 +6,6 @@ import {
   IonButtons,
   IonContent,
   IonHeader,
-  IonIcon,
   IonItem,
   IonLabel,
   IonNote,
@@ -14,19 +13,65 @@ import {
   IonToolbar,
   useIonViewWillEnter,
   IonAvatar,
+  IonFooter,
+  IonTitle,
 } from "@ionic/react";
-import { personCircle } from "ionicons/icons";
+import styled from "styled-components";
 import { useParams } from "react-router";
 import "./ViewMessage.css";
+import { IonButton, useIonToast } from "@ionic/react";
+import data from "../data/static";
+import Loader from "../components/Loader/Loader";
+import axios from "axios";
+import CONSTANTS from "../constants";
 
 function ViewMessage() {
   const [message, setMessage] = useState<DistributorInfo>();
+  const [feedbackList, setFeedbackList] = useState<any>([]);
+  const [showLoader, setShowLoader] = useState<Boolean>(false);
+  const [present, dismiss] = useIonToast();
+
   const params = useParams<{ id: string }>();
 
   useIonViewWillEnter(() => {
     const msg = getDistributor(parseInt(params.id, 10));
     setMessage(msg);
   });
+
+  const handleFeedbackBtnOnClick = (value: any) => {
+    if (feedbackList.includes(value)) {
+      const updatedFeedbackList = feedbackList.filter(
+        (item: any) => item !== value
+      );
+      setFeedbackList(updatedFeedbackList);
+    } else {
+      setFeedbackList([...feedbackList, value]);
+    }
+  };
+
+  const submitFeedbackHandler = () => {
+    const param: any = {
+      id: params.id,
+      feedbackCodes: feedbackList,
+    };
+    axios
+      .post(`${CONSTANTS.API.BASEURL}${CONSTANTS.API.submitFeedback}`, param)
+      .then((_res: any) => {
+        present({
+          message: "Feedback has been submitted successfully...",
+          duration: 3000,
+        });
+        setShowLoader(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setShowLoader(false);
+      });
+  };
+
+  if (showLoader) {
+    return <Loader />;
+  }
 
   return (
     <IonPage id="view-message-page">
@@ -95,9 +140,31 @@ function ViewMessage() {
         ) : (
           <div>Distributor not found</div>
         )}
+        <FeedbackContainer>
+          {data.feedbackCodes.map((item: any) => (
+            <IonButton
+              fill="outline"
+              onClick={() => handleFeedbackBtnOnClick(item.code)}
+            >
+              {item.label}
+            </IonButton>
+          ))}
+        </FeedbackContainer>
+        <IonButton
+          fill="solid"
+          expand="full"
+          disabled={feedbackList.length ? false : true}
+          onClick={() => submitFeedbackHandler()}
+        >
+          Submit feedback
+        </IonButton>
       </IonContent>
     </IonPage>
   );
 }
+
+const FeedbackContainer = styled.div`
+  display: "flex";
+`;
 
 export default ViewMessage;
