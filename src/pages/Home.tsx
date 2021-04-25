@@ -24,7 +24,13 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonFab, 
+  IonFabButton, 
+  IonIcon, 
+  IonFabList
 } from "@ionic/react";
+
+import { informationCircleOutline } from 'ionicons/icons';
 
 const Home: React.FC = () => {
   const [city, setCity] = useState<any>();
@@ -148,8 +154,18 @@ const Home: React.FC = () => {
             ))}
           </IonList>
         ) : (
-          <p>No distributor found</p>
+          <p className="helper-text">
+            {distributor.length ? 'No distributor found' : 'Please select the City and Medicine to view distributors'}
+          </p>
         )}
+
+        {/* Fab Button for Form Integration */}
+        {/* <IonFab vertical="bottom" horizontal="end" slot="fixed">
+          <IonFabButton>
+            <IonIcon icon={informationCircleOutline} />
+          </IonFabButton>
+        </IonFab> */}
+
       </IonContent>
     </IonPage>
   );

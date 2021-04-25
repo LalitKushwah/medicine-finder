@@ -96,3 +96,9 @@ ion-list-header {
 .custom_select__dropdown-indicator {
   color: #F93F76 !important;
 }
+
+.helper-text {
+  color: var(--ion-color-medium);
+  text-align: center;
+  font-size: 14px;
+}

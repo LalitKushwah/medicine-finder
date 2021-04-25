@@ -53,3 +53,14 @@ ion-avatar img{
   width: 40px;
   height: 40px;
 }
+
+.submit-feedback-btn {
+  max-width: 200px;
+  text-align: center;
+  margin: 10px auto;
+}
+
+.selected {
+  background: rgba(51, 221, 102, 0.15);
+  border-radius: 64px;
+}

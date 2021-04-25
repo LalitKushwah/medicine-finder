@@ -47,6 +47,7 @@ function ViewMessage() {
     } else {
       setFeedbackList([...feedbackList, value]);
     }
+    console.log(feedbackList);
   };
 
   const submitFeedbackHandler = () => {
@@ -144,6 +145,11 @@ function ViewMessage() {
           {data.feedbackCodes.map((item: any) => (
             <IonButton
               fill="outline"
+              shape="round"
+              size="small"
+              mode="ios"
+              color={feedbackList.includes(item.code) ? 'success' : 'primary'}
+              className={feedbackList.includes(item.code) ? 'selected' : ''}
               onClick={() => handleFeedbackBtnOnClick(item.code)}
             >
               {item.label}
@@ -152,7 +158,10 @@ function ViewMessage() {
         </FeedbackContainer>
         <IonButton
           fill="solid"
-          expand="full"
+          expand="block"
+          shape="round"
+          mode="ios"
+          className="submit-feedback-btn"
           disabled={feedbackList.length ? false : true}
           onClick={() => submitFeedbackHandler()}
         >
