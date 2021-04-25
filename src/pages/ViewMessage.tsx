@@ -62,6 +62,7 @@ function ViewMessage() {
           message: "Feedback has been submitted successfully...",
           duration: 3000,
         });
+        setFeedbackList([]);
         setShowLoader(false);
       })
       .catch((err) => {
@@ -148,8 +149,8 @@ function ViewMessage() {
               shape="round"
               size="small"
               mode="ios"
-              color={feedbackList.includes(item.code) ? 'success' : 'primary'}
-              className={feedbackList.includes(item.code) ? 'selected' : ''}
+              color={feedbackList.includes(item.code) ? "success" : "primary"}
+              className={feedbackList.includes(item.code) ? "selected" : ""}
               onClick={() => handleFeedbackBtnOnClick(item.code)}
             >
               {item.label}
