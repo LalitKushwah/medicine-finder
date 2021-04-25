@@ -52,7 +52,7 @@ function ViewMessage() {
 
   const submitFeedbackHandler = () => {
     const param: any = {
-      distributorId: params.id,
+      distributorID: params.id,
       feedbackCodes: feedbackList,
     };
     axios
